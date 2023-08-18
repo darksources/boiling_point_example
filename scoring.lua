@@ -11,6 +11,9 @@ json = require('cjson')
 -- Make connection to redis
 redis_con = hiredis.connect("127.0.0.1", 6379)
 
+---- This is the magic ----
+-- In short the use a list with overall TTL an populate event times we then prune
+-- in a controlled manor allowing a build up to reach our boiling point trigger
 function get_stat_count(name, value, list_inspect_count, timeout)
     -- INPUT --
     -- name = overall key that contains value markers to track - IE: ip
@@ -36,8 +39,8 @@ function get_stat_count(name, value, list_inspect_count, timeout)
     --   * Limit resource need and speeds things up
     --   * Adds the ability to control the raise and fall rate of scoring
     local db_list = redis_con:command('LRANGE', hit_key, 0, list_inspect_count)
-
-    -- Run list and remove expired items in single Redis exec. 
+    
+    -- Run item list and remove expired items in single Redis exec. 
     redis_con:command('MULTI')
             if (db_list ~= nil) then
                     for i = 1, #db_list do
