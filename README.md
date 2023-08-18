@@ -11,8 +11,10 @@ What are these types of triggers good for?
 Testing it out
 
 Ubuntu:
-$ sudo apt -y install lua-cjson lua-md5 luarocks libhiredis-dev
-$ sudo luarocks install lua-hiredis
+
+    $ sudo apt -y install lua-cjson lua-md5 luarocks libhiredis-dev
+    $ sudo luarocks install lua-hiredis
+
 
 
 
