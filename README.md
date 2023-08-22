@@ -12,9 +12,6 @@ Testing it out
 
 Ubuntu:
 
-    $ sudo apt -y install lua-cjson lua-md5 luarocks libhiredis-dev
+    $ sudo apt -y install lua-cjson lua-md5 luarocks libhiredis-dev redis-server redis-tools
     $ sudo luarocks install lua-hiredis
-
-
-
-
+    $ lua scoring.lua
